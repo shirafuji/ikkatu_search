@@ -1,0 +1,25 @@
+{
+  "name": "ikkatu_search",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shirafuji/ikkatu_search.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/shirafuji/ikkatu_search/issues"
+  },
+  "homepage": "https://github.com/shirafuji/ikkatu_search#readme",
+  "dependencies": {
+    "@types/express": "^4.17.2",
+    "@types/node": "^12.12.17",
+    "puppeteer": "^2.0.0"
+  }
+}
