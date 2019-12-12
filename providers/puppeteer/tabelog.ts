@@ -1,5 +1,4 @@
 import * as TabelogEngine from './../../engines/tabelog'
-import { callbackify } from 'util';
 var puppeteer = require('puppeteer')
 
 
