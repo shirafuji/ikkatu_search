@@ -66,7 +66,7 @@ export class IkkyuClient implements IkkyuEngine.IIkkyuClient {
                     }, 'div#des_main_content_wrap > div.des_res_wrap:nth-child(' + (i+2) + ') .res_area_name')
                     rst_info_array.push({
                         name: name,
-                        url: url,
+                        url: "https://restaurant.ikyu.com"+url,
                         rating: rating,
                         budget: budget,
                         info: info,
