@@ -42,11 +42,16 @@ export class TabelogClient implements TabelogEngine.ITabelogClient {
                         var budget = document.querySelector(selector).innerText;
                         return budget
                     }, "ul.rstlist-info > li:nth-child(" + (i+1) + ") .list-rst__budget")
+                    var info  = await page.evaluate((selector: any) => {
+                        var info = document.querySelector(selector).innerText;
+                        return info
+                    }, "ul.rstlist-info > li:nth-child(" + (i+1) + ") span.list-rst__area-genre")
                     rst_info_array.push({
                         name: name,
                         url: url,
                         rating: rating,
                         budget: budget,
+                        info: info,
                     })
                 }
                 await page.close()
