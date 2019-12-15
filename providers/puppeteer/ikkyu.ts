@@ -1,6 +1,6 @@
 import * as IkkyuEngine from './../../engines/ikkyu'
 var puppeteer = require('puppeteer')
-
+require('events').EventEmitter.defaultMaxListeners = 15;
 
 export class IkkyuClient implements IkkyuEngine.IIkkyuClient {
     search (req: IkkyuEngine.IIkkyuRequest) :void {
@@ -21,7 +21,7 @@ export class IkkyuClient implements IkkyuEngine.IIkkyuClient {
                 var rst_list = await page.$$('div#des_main_content_wrap > div.des_res_wrap')
                 var rst_info_array = []
                 for (var i = 0; i < rst_list.length; i++) {
-                    if (i == 10) {
+                    if (i == 50) {
                         break;
                     }
                     var name = await page.evaluate ((selector: any) => {

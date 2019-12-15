@@ -1,5 +1,6 @@
 import * as TabelogEngine from './../../engines/tabelog'
 var puppeteer = require('puppeteer')
+require('events').EventEmitter.defaultMaxListeners = 15;
 
 
 export class TabelogClient implements TabelogEngine.ITabelogClient {
@@ -20,7 +21,7 @@ export class TabelogClient implements TabelogEngine.ITabelogClient {
                 var rst_info_array = []
                 var rsts = await page.$$("span.list-rst__rating-val")
                 for (var i = 0; i < rsts.length; i++) {
-                    if (i == 11) {
+                    if (i == 51) {
                         break
                     }
                     if (i == 5) {
