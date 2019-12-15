@@ -6,7 +6,7 @@ export class TabelogClient implements TabelogEngine.ITabelogClient {
     search (req: TabelogEngine.ITabelogRequest) :void {
         (async () => {
             try {
-                var browser = await puppeteer.launch({headless: false});
+                var browser = await puppeteer.launch();
                 var page = await browser.newPage();
                 await page.goto("https://tabelog.com/rstLst/");
                 await page.type('input#sa', req.area)

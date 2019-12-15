@@ -6,7 +6,7 @@ export class IkkyuClient implements IkkyuEngine.IIkkyuClient {
     search (req: IkkyuEngine.IIkkyuRequest) :void {
         (async () => {
             try {
-                var browser = await puppeteer.launch({headless: false});
+                var browser = await puppeteer.launch();
                 var page = await browser.newPage();
                 await page.goto("https://restaurant.ikyu.com/");
                 await page.click('span.des_srchTitle[objectid="search_2_rstname"]')
