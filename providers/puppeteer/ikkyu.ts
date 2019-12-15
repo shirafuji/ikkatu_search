@@ -14,9 +14,15 @@ export class IkkyuClient implements IkkyuEngine.IIkkyuClient {
                 await page.type('input#searchbox-text', req.area + " ")
                 await page.type('input#searchbox-text', req.genre)
                 await page.click('button[type="button"]')
-                await page.waitForSelector('a[objectid="sort__rvw"]')
-                await page.waitForSelector('div#des_main_content_wrap')
-                await page.click('a[objectid="sort__rvw"]')
+                var rank_link_selector = 'a[objectid="sort__rvw"]'
+                await page.waitForSelector(rank_link_selector, {timeout: 5000})
+                var rank_link = await page.$(rank_link_selector)
+                if (rank_link == null) {
+                    await page.close()
+                    await browser.close()
+                    req.callback(req.res, null, null)
+                }
+                await page.click(rank_link_selector)
                 await page.waitForSelector('div#des_main_content_wrap')
                 var rst_list = await page.$$('div#des_main_content_wrap > div.des_res_wrap')
                 var rst_info_array = []
@@ -84,10 +90,13 @@ export class IkkyuClient implements IkkyuEngine.IIkkyuClient {
                     req.res,
                     null,
                     {
-                        Code: e.code,
+                        Code: 500,
                         Message: e.message,
                     })
-            }
+            }　finally {
+                //例外が発生しても発生しなくてもここは必ず通る
+                await browser.close();
+              }
         })();
     }
     makeIIkkyuClient () :IkkyuEngine.IIkkyuClient {
