@@ -28,24 +28,44 @@ export class TabelogClient implements TabelogEngine.ITabelogClient {
                         continue
                     }
                     var name  = await page.evaluate((selector: any) => {
-                        var name = document.querySelector(selector).innerText;
-                        return name
+                        var name = document.querySelector(selector)
+                        if (name) {
+                            return name.innerText;
+                        } else {
+                            return
+                        }
                     }, "ul.rstlist-info > li:nth-child(" + (i+1) + ") a.list-rst__rst-name-target")
                     var url  = await page.evaluate((selector: any) => {
-                        var url = document.querySelector(selector).getAttribute('href');
-                        return url
+                        var url = document.querySelector(selector)
+                        if (url) {
+                            url.getAttribute('href');
+                        } else {
+                            return
+                        }
                     }, "ul.rstlist-info > li:nth-child(" + (i+1) + ") a.list-rst__rst-name-target")
                     var rating  = await page.evaluate((selector: any) => {
-                        var rating = document.querySelector(selector).innerText;
-                        return rating
+                        var rating = document.querySelector(selector)
+                        if (rating) {
+                            rating.innerText;
+                        } else {
+                            return
+                        }
                     }, "ul.rstlist-info > li:nth-child(" + (i+1) + ") span.list-rst__rating-val")
                     var budget  = await page.evaluate((selector: any) => {
-                        var budget = document.querySelector(selector).innerText;
-                        return budget
+                        var budget = document.querySelector(selector)
+                        if (budget) {
+                            return budget.innerText;
+                        } else {
+                            return
+                        }
                     }, "ul.rstlist-info > li:nth-child(" + (i+1) + ") .list-rst__budget")
                     var info  = await page.evaluate((selector: any) => {
-                        var info = document.querySelector(selector).innerText;
-                        return info
+                        var info = document.querySelector(selector)
+                        if (info) {
+                            return info.innerText;
+                        } else {
+                            return
+                        }
                     }, "ul.rstlist-info > li:nth-child(" + (i+1) + ") span.list-rst__area-genre")
                     rst_info_array.push({
                         name: name,
