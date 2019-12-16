@@ -8,6 +8,7 @@ export class IkkyuClient implements IkkyuEngine.IIkkyuClient {
             try {
                 var browser = await puppeteer.launch();
                 var page = await browser.newPage();
+                await page.setUserAgent('Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.87 Safari/537.36')
                 await page.goto("https://restaurant.ikyu.com/");
                 await page.click('span.des_srchTitle[objectid="search_2_rstname"]')
                 await page.waitFor(50)
