@@ -85,7 +85,16 @@ export class YahooClient implements YahooEngine.IYahooClient {
                             return
                         }
                     }, "div.LSajWrp ul > li:nth-child(" + (i+1) + ") div.bd div.data p.priceNight")
-                    var budget = dayBudget + nightBudget;
+                    var budget
+                    if (dayBudget) {
+                        if (nightBudget) {
+                            budget = dayBudget + " , " + nightBudget
+                        } else {
+                            budget = dayBudget
+                        }
+                    } else {
+                        budget = nightBudget
+                    }
                     var info = await page.evaluate((selector: any) => {
                         var info = document.querySelector(selector)
                         if (info) {
@@ -95,7 +104,7 @@ export class YahooClient implements YahooEngine.IYahooClient {
                         }
                     }, "div.LSajWrp ul > li:nth-child(" + (i+1) + ") div.bd div.data p.access")
                     if (info) {
-                        info = info + await page.evaluate((selector: any) => {
+                        info = info + '\n' + await page.evaluate((selector: any) => {
                             var info = document.querySelector(selector)
                             if (info) {
                                 return info.innerText;
